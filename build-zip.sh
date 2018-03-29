@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+OUT_FOLDER=${HOME}/kernels/als/angler/out
+
+build-kernel -d angler_defconfig -f "$(dirname "${OUT_FOLDER}")"
+git cl
+cp -v "${OUT_FOLDER}/arch/arm64/boot/Image.gz-dtb" .
+echo "Kernel version: $(cat "${OUT_FOLDER}/include/config/kernel.release")" > version
+zip -r9 initial.zip -x build-zip.sh README.md zImage "modules/*" "patch/*" "ramdisk/*" -- *
+java -jar "${HOME}/scripts/bin/zipsigner-2.1.jar" "initial.zip" "angler-als-$(date +%Y%m%d-%H%M).zip"
