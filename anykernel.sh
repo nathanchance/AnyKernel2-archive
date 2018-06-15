@@ -31,7 +31,7 @@ ps | grep zygote | grep -v grep >/dev/null && in_recovery=false || in_recovery=t
 
 
 ## AnyKernel install
-split_boot;
+dump_boot;
 
 
 # Mount system to get some information about the user's setup (only needed in recovery)
@@ -81,6 +81,15 @@ else
 fi;
 
 
+# Add skip_override parameter to cmdline so user doesn't have to reflash Magisk
+if [ -d $ramdisk/.backup ]; then
+  ui_print " "; ui_print "Magisk detected! Patching cmdline so reflashing Magisk is not necessary...";
+  patch_cmdline "skip_override" "skip_override";
+else
+  patch_cmdline "skip_override" "";
+fi;
+
+
 # Unmount system
 if $in_recovery; then
   umount /system;
@@ -91,4 +100,4 @@ fi;
 
 
 # Install the boot image
-flash_boot;
+write_boot;
