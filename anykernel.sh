@@ -27,9 +27,9 @@ dump_boot;
 
 # begin ramdisk changes
 
-# Enable Avengers Theme on the command line
-ui_print " "; ui_print "Enabling Avengers Theme..."
-patch_cmdline "avengers_theme" "avengers_theme"
+# Disable Avengers Theme on the command line
+ui_print " "; ui_print "Disabling Avengers Theme..."
+patch_cmdline "avengers_theme" ""
 
 # end ramdisk changes
 
