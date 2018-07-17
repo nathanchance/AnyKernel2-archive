@@ -23,7 +23,7 @@ ramdisk_compression=auto;
 . /tmp/anykernel/tools/ak2-core.sh;
 
 ## AnyKernel install
-dump_boot;
+split_boot;
 
 # begin ramdisk changes
 
@@ -33,7 +33,7 @@ patch_cmdline "avengers_theme" ""
 
 # end ramdisk changes
 
-write_boot;
+flash_boot;
 
 ## end install
 
