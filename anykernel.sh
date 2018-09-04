@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Stock dtbo image for Pie August Security Update by @nathanchance
+kernel.string=Stock dtbo image for Pie September 2018 Security Update by @nathanchance
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
